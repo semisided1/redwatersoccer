@@ -1,0 +1,208 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<dom-module id="rms-app">
+<template>
+
+<style>
+
+.menu-item:hover {
+      background: #FFD400;
+      width: 100%;
+}
+#overlay {
+    display:none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 10;
+}
+
+</style>
+<div id="overlay"></div>
+
+<div class="bgstyle" style="width:100%; background:lightgreen" class="vertical layout center">
+
+<div id="drawer-button" style="z-index:50; width:100%; position:absolute;top: 0; left:0 " class="horizontal layout end-justified">
+<iron-icon id="{{id}}ii" icon="menu" ></iron-icon>
+</div>
+
+
+
+
+
+
+<!--
+
+home:
+
+announcements:
+	dated blog entries
+
+teams: 
+	for each team:
+		schedule, results, roster, pictures and video highlights
+    game sheet: a form for tracking games - goals, players etc    
+
+
+campaigns: 
+	fund raising, 
+	anti bullying, 
+	kit trader,
+    skill building
+
+organization:
+    mission statement,
+	personel profiles,
+    policy rules
+
+
+ -->
+
+
+
+
+
+<style>
+iron-selector {
+    width: 100%;
+}
+iron-selector> div > paper-button {
+    width: 95%;
+}
+</style>
+
+<app-drawer id="{{id}}ad" style="display:none; z-index:20; width: 250px; background : indigo; color: white" position="right" >
+
+<div class="layout vertical center" >
+
+<div>
+<h3>Rockets Menu</h3>
+</div>
+
+<iron-selector selected="[[page]]" activate-event="click" attr-for-selected="name">
+<div>
+<paper-button class="menu-item" name="home"  >HOME</paper-button>
+</div>
+<div>
+<paper-button class="menu-item" name="announce" >ANNOUNCE</paper-button>
+</div>
+<div>
+<paper-button class="menu-item" name="teams"  >TEAMS</paper-button>
+</div>
+<div>
+<paper-button class="menu-item" name="campaigns"  >CAMPAIGNS</paper-button>
+</div>
+<div>
+<paper-button class="menu-item" name="organization" >ORGANIZATION</paper-button>
+</div>
+</iron-selector>
+</div>
+</app-drawer>
+
+<section name="entire page" style="width: 100%; " class="center vertical layout">
+
+
+         
+
+    <div style="box-shadow: 0px 5px 5px #888888; background:white; color:black; height: 200px; width:100%;" class="horizontal layout center-center">
+       <div style="height:200px; width:300px; overflow:hidden">
+        <iron-image sizing="fit"  style=" height: 300px; width:300px; opacity:.5"  
+src = "/images/Soccerball.svg"></iron-image>
+        </div>
+           <!-- <iron-image style="width:80px; height:100px; padding: 0px 0px 20px 0px" sizing="contain" src="/images/rrl.png"></iron-image> -->
+            <div class="vertical layout center-center">
+                <h1 style="margin: 10px 0px 0px 20px; font-size: 2.5em; line-height: 85%; text-shadow: 2px 2px green;"  > Redwater Minor Soccer</h1>
+            </div>
+        
+    </div>
+
+<section name="content area" style="width: 100%; " class="vertical layout center">
+<iron-pages id="{{id}}ip"  attr-for-selected="name" selected="{{page}}" >
+<rms-home name="home" id="home"></rms-home>
+<rms-announce name="announce" id="announce"></rms-announce>
+<rms-teams name="teams" id="teams"></rms-teams>
+<rms-campaigns name="campaigns" id="campaigns"></rms-campaigns>
+<rms-organization name="organization" id="organization"></rms-organization>
+</iron-pages>
+</section>
+
+<footer style="width:100%" >
+<div style=" width:100%;font-size: 0.75em; color: white; background:indigo; width:100%" class="horizontal left-justified layout">
+<p style="margin: 10px;"> &copy; 2016 Redwater Minor Soccer</p>
+</div>
+</footer>
+</section>        
+
+
+</div>
+</template>
+
+
+<script>
+
+        var miclick = function() {
+
+                  var o = document.getElementById('overlay');
+                  o.style.display = 'none';
+
+                  var ii = document.getElementById('appii');
+                  ii.style.fill = 'black';
+
+                  var ad = document.getElementById('appad');
+                  ad.toggle();
+                  ad.style.display = 'none';
+
+                  window.location.href = '#!' + this.getAttribute('name');
+        };
+
+
+      Polymer({
+        is: 'rms-app',
+        properties : {
+              page : {
+                    type:String
+              }
+        },
+        
+        attached: function() {
+            var ii = document.getElementById(this.id+ 'ii');
+            ii.onclick = function() {
+
+                    
+
+                  var o = document.getElementById('overlay');
+                  var ad = document.getElementById(this.id.replace('ii','ad'));
+                  ad.toggle();
+
+                  if (o.style.display ==='block') { // hide menu and overlay
+                      this.style.fill = 'black';
+                      o.style.display = 'none';
+                      ad.style.display = 'none';
+                      
+                  } else { // show menu and overlay
+                    this.style.fill = 'white';
+                    o.style.display = 'block';  
+                    ad.style.display = 'block';  
+                  }
+                  
+                 
+
+            };
+       
+            var mi = document.querySelectorAll('.menu-item');
+         
+
+            var i;
+            for (i = 0; i <	mi.length; i++) {
+   	            mi[i].onclick = miclick;
+            }
+       }
+      });
+
+  </script>
+
+</dom-module>
+

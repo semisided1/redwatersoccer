@@ -1,0 +1,27 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<dom-module id="rms-teams">
+<template>
+<h2>Teams</h2>
+<p> Team specific announcements, roster, schedule, game results, photos, video, contact </p>
+<div class="horizontal layout">
+<rms-schedule id="u10" dataurl="/data/u10schedule.json" buttontext="u10 fall 2015 indoor"></rms-schedule>
+<rms-schedule id="u12" dataurl="/data/u12schedule.json" buttontext="u12 fall 2015 indoor"></rms-schedule>
+</div>
+</template>
+
+<script>
+      Polymer({
+        is: 'rms-teams',
+        properties : {
+              page : {
+                    type:String
+              }
+        },
+        
+        attached: function() {
+        }
+      });
+</script>
+
+</dom-module>

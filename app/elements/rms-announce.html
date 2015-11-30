@@ -1,0 +1,66 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<dom-module id="rms-announce">
+<template>
+
+<div class="horizontal flex center layout" >
+<paper-material elevation="2" style=" background: white; color: black; margin: 15px 0px 15px 0px; max-width:965px; ">     
+      <div style="padding: 20px 0px 20px 20px; min-width: 200px;" class="vertical layout">
+            <h3>Announcements</h3>
+            <p>A meeting was held Wednesday November 18th at Paradise Inn. Many issues where raised by 
+            parents and parent-coach liaisons. Redwater Minor Soccer would like to thank everyone who
+            contributed either by email or in person and Paradise Inn for lending us the space. The 
+            meeting lasted 2 hours and it is clear that we are going through a period of change where
+            more discussions will be forthcoming. Some of the topics discussed where:
+            </p>
+
+
+            
+            <ul style="list-style-type: square ; list-style-position: outside " class="vertical layout">
+            <li>
+            Fund Raising
+            </li>
+            <li>
+            New positions
+            </li>
+            <li>
+            Parent liaisons
+            </li>
+            <li>
+            Policy updates
+            </li>
+            <li>
+            Agenda for next meeting
+            </li>
+            <li>
+            Team Photos
+            </li>
+            <li>
+            Practice venue
+            </li>
+            <li>
+            Managing change
+            </li>
+
+            </ul>
+      </div>
+</paper-material>
+</div>
+
+</template>
+
+<script>
+      Polymer({
+        is: 'rms-announce',
+        properties : {
+              page : {
+                    type:String
+              }
+        },
+        
+        attached: function() {
+        }
+      });
+</script>
+
+</dom-module>

@@ -1,0 +1,33 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<dom-module id="partner-card">
+
+<template>
+
+<paper-material elevation="2" style="padding: 5px 15px 5px 15px;background:white" > 
+
+<div class="vertical layout center">
+<div style="height:200px; width:200px" >
+<iron-image style="height:200px; width:200px" sizing="contain" src={{src}} ></iron-image>
+</div>
+<div style="width:200px; height:100px;  text-align: center;" >
+<p><a href="{{href}}">{{name}}</p></a></div>   
+
+</paper-material>
+
+</template>
+
+
+
+<script>Polymer({is:'partner-card',
+        properties : {
+              src : {
+                    type:String
+              },
+              href : {
+                  type:String
+              },
+              name : {
+                  type:String
+              }
+        }});</script>
+</dom-module>
